@@ -1,7 +1,3 @@
-/*
- * File: 100-print_comb3.c
- * Auth: Shawky mohamed sayed mousa sanad
- */
 #include <stdio.h>
 
 /**
