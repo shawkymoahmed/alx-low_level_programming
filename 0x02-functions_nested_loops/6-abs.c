@@ -1,10 +1,20 @@
-#include "shawki.h"
-/**
- * _abs - a function that computes the absolute value of an integer
- * @ab: integer input
- * Return: absolute value of ab
+/*
+ * File: 6-abs.c
+ * Auth: shawki Mohamed
  */
-int _abs(int ab)
+
+#include "shawki.h"
+
+/**
+ * _abs - Computes the absolute value of an integer.
+ * @n: The integer to be computed.
+ *
+ * Return: The absolute value of the integer.
+ */
+int _abs(int n)
 {
-	return (ab * ((ab > 0) - (ab < 0)));
+	if (n >= 0)
+		return (n);
+	else
+		return (-n);
 }
