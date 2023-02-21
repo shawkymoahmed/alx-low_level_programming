@@ -3,7 +3,7 @@
  * Auth: shawki Mohamed
  */
 
-#include "shawki.h"
+#include "main.h"
 
 /**
  * _isalpha - Checks if a character is alphabetic.
