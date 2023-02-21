@@ -1,12 +1,18 @@
-#include "shawki.h"
-/**
- * add - a function that adds two integers and returns the result
- * @one: first number input
- * @two: second number input
- * Return: one + two
+/*
+ * File: 10-add.c
+ * Auth: shawki Mohamed
  */
-int add(int one, int two)
-{
-	return (one + two);
-}
 
+#include "shawki.h"
+
+/**
+ * add - Adds two integers.
+ * @num1: The first integer to be added.
+ * @num2: The second integer to be added.
+ *
+ * Return: The result of the addition.
+ */
+int add(int num1, int num2)
+{
+	return (num1 + num2);
+}
