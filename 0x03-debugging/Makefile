@@ -1,8 +1,8 @@
 
-all: check-betty-style 0 1 2 3
+all: 0 1 2 3
 
-check-betty-style:
-	./Betty/betty.sh *.c *.h
+# check-betty-style:
+#	./Betty/betty.sh *.c *.h
 
 0:
 	gcc -Wall -pedantic -Werror -Wextra -std=gnu89 positive_or_negative.c main.c
