@@ -1,6 +1,6 @@
 /*
  * File: 4-print_most_numbers.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include "main.h"

@@ -1,6 +1,6 @@
 /*
  * File: 2-mul.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include "main.h"

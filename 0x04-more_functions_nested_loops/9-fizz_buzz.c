@@ -1,6 +1,6 @@
 /*
  * File: 9-fizz_buzz.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include <stdio.h>

@@ -1,6 +1,6 @@
 /*
  * File: 8-print_square.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include "main.h"

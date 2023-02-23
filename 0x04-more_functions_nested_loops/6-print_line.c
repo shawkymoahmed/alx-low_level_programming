@@ -1,6 +1,6 @@
 /*
  * File: 6-print_line.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include "main.h"

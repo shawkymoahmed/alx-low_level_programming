@@ -1,6 +1,6 @@
 /*
  * File: 101-print_number.c
- * Auth: Asim Abdelgadir
+ * Auth: Shawky Mohamed
  */
 
 #include "main.h"
