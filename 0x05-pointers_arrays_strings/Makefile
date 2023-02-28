@@ -42,5 +42,5 @@ check:
 	gcc -Wall -pedantic -Werror -Wextra 101-keygen.c -o 101-keygen && ./101-crackme "`./101-keygen`"
 
 clean:
-	rm -f 0-98 1-swap 2-strlen 3-puts 4-print_rev 5-rev_string 6-puts2 7-puts_half 8-print_array 9-strcpy 100-atoi 101-keygen 101-crackme *.o *.out *.gch
+	rm -f 0-98 1-swap 2-strlen 3-puts 4-print_rev 5-rev_string 6-puts2 7-puts_half 8-print_array 9-strcpy 100-atoi 101-keygen *.o *.out *.gch
 
