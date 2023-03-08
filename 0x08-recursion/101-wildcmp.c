@@ -1,79 +1,90 @@
 #include "main.h"
-int _check_asterisk(char *s3, int end_1);
-int _equal_no_aster(char *s4, char *s5, int cont_2);
-int identical_asterisk(char *s6, char *s7, int cont_3, int cont_4);
 
 /**
- * wildcmp - function that compare two strings and consiere identicals
- * @s1: char to review
- * @s2: char to compare
+ * strlen_no_wilds - Returns the length of a string,
+ *                   ignoring wildcard characters.
+ * @str: The string to be measured.
  *
- * Return: 1 if identical, 0 else no identical
+ * Return: The length.
+ */
+int strlen_no_wilds(char *str)
+{
+	int len = 0, index = 0;
+
+	if (*(str + index))
+	{
+		if (*str != '*')
+			len++;
+
+		index++;
+		len += strlen_no_wilds(str + index);
+	}
+
+	return (len);
+}
+
+/**
+ * iterate_wild - Iterates through a string located at a wildcard
+ *                until it points to a non-wildcard character.
+ * @wildstr: The string to be iterated through.
+ */
+void iterate_wild(char **wildstr)
+{
+	if (**wildstr == '*')
+	{
+		(*wildstr)++;
+		iterate_wild(wildstr);
+	}
+}
+
+/**
+ * postfix_match - Checks if a string str matches the postfix of
+ *                 another string potentially containing wildcards.
+ * @str: The string to be matched.
+ * @postfix: The postfix.
+ *
+ * Return: If str and postfix are identical - a pointer to the null byte
+ *                                            located at the end of postfix.
+ *         Otherwise - a pointer to the first unmatched character in postfix.
+ */
+char *postfix_match(char *str, char *postfix)
+{
+	int str_len = strlen_no_wilds(str) - 1;
+	int postfix_len = strlen_no_wilds(postfix) - 1;
+
+	if (*postfix == '*')
+		iterate_wild(&postfix);
+
+	if (*(str + str_len - postfix_len) == *postfix && *postfix != '\0')
+	{
+		postfix++;
+		return (postfix_match(str, postfix));
+	}
+
+	return (postfix);
+}
+
+/**
+ * wildcmp - Compares two strings, considering wildcard characters.
+ * @s1: The first string to be compared.
+ * @s2: The second string to be compared - may contain wildcards.
+ *
+ * Return: If the strings can be considered identical - 1.
+ *         Otherwise - 0.
  */
 int wildcmp(char *s1, char *s2)
 {
-	int check_asterisk, cont_1 = 0, cont_2 = 0, cont_3 = 0, cont_4 = 0;
+	if (*s2 == '*')
+	{
+		iterate_wild(&s2);
+		s2 = postfix_match(s1, s2);
+	}
 
-	check_asterisk = _check_asterisk(s2, cont_1);
-	if (check_asterisk == 0)
-		return (_equal_no_aster(s1, s2, cont_2));
-	if (check_asterisk == 1)
-		return (identical_asterisk(s1, s2, cont_3, cont_4));
-	return (2);
-}
-/**
- * _check_asterisk - function that check if there is a asterisk
- * @s3: char to review
- * @cont_1: contador
- *
- * Return: 1 if there is a *,else 0
- */
-int _check_asterisk(char *s3, int cont_1)
-{
-	if (s3[cont_1] == '\0')
-		return (0);
-	if (s3[cont_1] == '*')
+	if (*s2 == '\0')
 		return (1);
-	return (_check_asterisk(s3, cont_1 + 1));
-}
-/**
- * _equal_no_aster - check if is equal with out asterisk
- * @s4: char to review
- * @s5: char to review
- * @cont_2: contador
- *
- * Return: 1 if there are equal, else 0
- */
-int _equal_no_aster(char *s4, char *s5, int cont_2)
-{
-	if (s4[cont_2] != s5[cont_2])
+
+	if (*s1 != *s2)
 		return (0);
-	if ((s4[cont_2] == s5[cont_2]) && (s4[cont_2] == '\0'))
-		return (1);
-	if (s4[cont_2] == s5[cont_2])
-		return (_equal_no_aster(s4, s5, cont_2 + 1));
-	return (1);
-}
-/**
- * identical_asterisk - check if there are identical whit asterisk
- * @s6: char to review
- * @s7: char to review
- * @cont_3: contador
- * @cont_4: contador
- *
- * Return: 1 if s1 y s2 are identical, else 0
- */
-int identical_asterisk(char *s6, char *s7, int cont_3, int cont_4)
-{
-	if ((s6[cont_3] != s7[cont_4]) && (s7[cont_4] == '*'))
-		cont_4++;
-	else if ((s6[cont_3] == s7[cont_4]) && (s7[cont_4] != '\0'))
-		cont_4++;
-	else if ((s6[cont_3] != s7[cont_4]) && (s7[cont_4 - 1] != '*'))
-		return (0);
-	if (s7[cont_4] == '*' && cont_3 != 0)
-		cont_3--;
-	if ((s6[cont_3] == s7[cont_4]) && (s7[cont_4] == '\0'))
-		return (1);
-	return (identical_asterisk(s6, s7, cont_3 + 1, cont_4));
+
+	return (wildcmp(++s1, ++s2));
 }
